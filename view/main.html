@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+
+<body>
+    <h1>Welcome, <span id="username">Loading...</span></h1>
+
+    <script>
+        // Fetch user info and display email
+        fetch('/main/api/userinfo')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('username').innerText = data.username;
+            })
+            .catch(err => {
+                document.getElementById('username').innerText = 'Guest';
+                console.error('Error fetching user info:', err);
+            });
+    </script>
+</body>
+
+</html>
