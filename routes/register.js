@@ -9,16 +9,11 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const { username, email, password } = req.body;
-
-        // 🔍 Check if values are actually provided
         if (!username || !email || !password) {
             return res.status(400).send("All fields are required");
         }
 
-        // 🧂 Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        // 📦 Save user to DB
         const newUser = new usermodel({
             username,
             email,
